@@ -20,6 +20,37 @@ Python:2.7
 Impala客户端：impyla( 安装命令：pip install  six bit_array pure_sasl  impyla==0.10.0)
 
 ## 如何配置
+``` python
+#!/usr/bin/python
+# coding=utf8
+
+import json
+import requests
+from impala.dbapi import connect
+from pykafka import KafkaClient
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
+
+is_debug = False
+
+#env
+env = '{env}'
+
+#kafka config
+host = '{kafkaHost}'
+client = KafkaClient(hosts="%s:{kafkaPort}" % host)
+topicName = 'ATLAS_HOOK'
+
+#impala config
+impalaHost = '{impalaHost}'
+impalaPort = {impalaPort}
+
+#dindin config
+dindinMachine='https://oapi.dingtalk.com/robot/send?access_token={access_token}'
+......
+```
+
 请把脚本中出现如下字符的地方替换成正确的配置：
 ```
 {env} : 环境信息。用于通知使用
