@@ -5,7 +5,8 @@
 实时更新Impala元数据
 
 # 技术原理
-研究了一番新版本的Impala，新版本的Impala是使用Hive Hook机制实现的元数据刷新。Hive Hook允许用户自己监听Hive表的变动，然后扩展实现一些非标功能。比如`Apache Atlas`使用Hive Hook实现了血缘图。恰巧笔者使用的Ambari集群就有集成Atlas（开心的一批，不用自己写Hive Hook的扩展了）。那我们直接使用Atlas的Hive Hook扩展抓出来的数据，就能完成数据表更新的监听操作。然后更新Impala的某个表元数据。
+研究了一番新版本的Impala，新版本的Impala是使用Hive Hook机制实现的元数据刷新。Hive Hook允许用户自己监听Hive表的变动，然后扩展实现一些非标功能。比如`Apache Atlas`使用Hive Hook实现了血缘图。恰巧笔者使用的Ambari集群就有集成Atlas（开心的一批，不用自己写Hive Hook的扩展了。想看看通过Hook如何做的同学请点击[传送门](https://github.com/Observe-secretly/hive-metadata-hook)）。那我们直接使用Atlas的Hive Hook扩展抓出来的数据，就能完成数据表更新的监听操作。然后更新Impala的某个表元数据。
+
 ### Atlas Hive Hook的工作方式和流程
 ```
 Hive --> Atlas Hive Hook --> Kafka --> Atlas
@@ -33,3 +34,7 @@ Impala客户端：impyla( 安装命令：pip install  six bit_array pure_sasl  i
 ```
 nohup python -u impalaMetadataAutoRefresh.py > run.log &
 ```
+
+## 问题交流与反馈 
+QQ：914245697
+
